@@ -3,18 +3,18 @@
 
 //Base struct
 typedef struct n{
-	int x;
+	int data;
 	n * next;
 }node;
 
 
 //Insert new node
-node * insert(node * r,int x){
+node * insert(node * r,int new_value){
 	
 	//If root adress is null, than create new node and assign it as root node
 	if( r == NULL){
 		r = (node*)malloc(sizeof(node));
-		r->x = x;
+		r->data = new_value;
 		r->next = NULL;
 		return r;	
 	}
@@ -23,7 +23,7 @@ node * insert(node * r,int x){
 	while(r->next != NULL)
 		r = r->next;
 	r->next = (node*)malloc(sizeof(node));
-	r->next->x = x;
+	r->next->data = new_value;
 	r->next->next = NULL;
 	return r;
 	
@@ -32,55 +32,55 @@ node * insert(node * r,int x){
 //List the linked list
 void print(node *r){
 	while(r != NULL){
-		printf("Value:> %d adress:> %d\n",r->x, r); 
+		printf("Value:> %d adress:> %d\n",r->data, r); 
 		r = r->next;
 	}
 	printf("\n");
 }
 
 // ordered Insertion
-node * Append_Ordered(node*r, int x){
+node * Append_Ordered(node*r, int new_value){
 	
 	// If new value lower than the root, than create new node and assign it as root
-	if( x < r->x ){
-		node * nw = (node*)malloc(sizeof(node));
-		nw->x = x;
-		nw->next = r;
-		r = nw;
+	if( new_value < r->data ){
+		node * New = (node*)malloc(sizeof(node));
+		New->data = new_value;
+		New->next = r;
+		r = New;
 		return r;
 	}	
 	
 	//If not, go straight until new data is greater than previous one
 	node * iter = r;
-	while( iter->next != NULL && x > iter->next->x ){
+	while( iter->next != NULL && new_value > iter->next->data ){
 		iter = iter->next;
 	}
 	
-	node * nw = (node*)malloc(sizeof(node));
-	nw->x = x;
-	nw->next = iter->next;
-	iter->next = nw;
+	node * New = (node*)malloc(sizeof(node));
+	New->data = new_value;
+	New->next = iter->next;
+	iter->next = New;
 	return r;
 	
 }
 
 //Delete any node from the chain
-node * Delete(node*r,int x){
+node * Delete(node*r,int new_value){
 	
-	if( r->x == x){
+	if( r->data == new_value){
 		r = r->next;
 		return r;
 	
 	}
 	
 	node * iter = r;
-	while(iter->next->x != x)
+	while(iter->next->data != new_value)
 		iter = iter->next;
-	if(iter->next->x == x && iter->next->next == NULL){
+	if(iter->next->data == new_value && iter->next->next == NULL){
 		iter->next = NULL;
 		return r;
 	}
-	if(iter->next->x == x){
+	if(iter->next->data == new_value){
 		iter->next = iter->next->next;
 		return r;
 	}
@@ -140,5 +140,4 @@ int main(){
 	printf("\n\n** Length = %d",count(root));
 
 }
-
 
