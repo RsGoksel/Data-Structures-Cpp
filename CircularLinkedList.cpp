@@ -85,9 +85,9 @@ node * Delete(node * r , int new_value){
 	if(r->next == r && r->data == new_value)
 		return NULL;
 	
-	//if we'll delete First element and list has more numbers.
-	//Go until last index which its next is root, than create new node, and assign second index to it's next.
-	// 1 2 4 5,     go 5, assign 5's next as 2, and delete 1 
+	//if we going to delete First element while the list has more numbers, 
+	// Than go straight until the last index which it's next is root. Then create a new node, and assign second index to it's next.
+	// 1 2 4 5,     go to 5, assign 5's next as 2, and delete 1 
 	
 	if(r->data == new_value){
 		node * iter =r;
