@@ -1,5 +1,5 @@
 # Data-Structures-Cpp
-Foundations of Data Structures in C++: Descriptions and Illustrations
+Fundamentals of Data Structures in C++ & Descriptions 
 
 
 In C++, a struct is a composite data type that allows you to group variables of different data types under a single name. 
